@@ -1,0 +1,181 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Assignments Manager API",
+    "description": "An API to handle assignments for candidates"
+  },
+  "paths": {
+    "/assignments": {
+      "get": {
+        "tags": [
+          "Assignment"
+        ],
+        "description": "Get assignment by ID",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "description": "Assignment Unique ID",
+            "schema": {
+              "type": "integer",
+              "example": 2
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assignment Object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 2
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "name"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "title"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "sample description"
+                    },
+                    "type": {
+                      "type": "string",
+                      "example": "quiz"
+                    },
+                    "duration": {
+                      "type": "integer",
+                      "example": 500
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Assignment"
+        ],
+        "description": "Create an assignment",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "name"
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "title"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "sample description"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "quiz"
+                  },
+                  "duration": {
+                    "type": "integer",
+                    "example": 500
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },           
+                    "example": ["data", "rest", "take home"]   
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created assignment"
+          },
+          "400": {
+            "description": "Unable to create the assignment"
+          }
+        }
+      }
+    },
+    "/assignments/tag": {
+      "get": {
+        "tags": [
+          "Assignment"
+        ],
+        "description": "Get assignments by tag",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tag",
+            "required": true,
+            "description": "Assignment Tag",
+            "schema": {
+              "type": "string",
+              "example": "database"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assignment Objects Array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 2
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "name"
+                      },
+                      "title": {
+                        "type": "string",
+                        "example": "title"
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "sample description"
+                      },
+                      "type": {
+                        "type": "string",
+                        "example": "quiz"
+                      },
+                      "duration": {
+                        "type": "integer",
+                        "example": 500
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
